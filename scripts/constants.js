@@ -1,11 +1,8 @@
-const { Builder } = require('selenium-webdriver');
 const colors = require('colors');
 
 const browserName = 'firefox'; // браузер для тестов
 const url = 'https://tjournal.ru/'; // сайт для тестов
 const maxWaitTime = 4000; // максимальное время ожидания
-
-const driver = new Builder().forBrowser(browserName).build();
 
 const errors = {
     notFound: 'Ошибка: некоторые элементы не были найдены на странице',
@@ -32,4 +29,4 @@ const finishTesting = (component) => {
     console.log(`🟦 Тестирование ${component} закончилось `.blue);
 };
 
-module.exports = { url, maxWaitTime, driver, errors, click, consoleError, consoleSuccess, startTesting, finishTesting };
+module.exports = { url, maxWaitTime, errors, click, consoleError, consoleSuccess, startTesting, finishTesting, browserName };

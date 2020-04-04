@@ -1,7 +1,6 @@
 const {
     url,
     maxWaitTime,
-    driver,
     errors,
     click,
     consoleError,
@@ -13,7 +12,7 @@ const { By, Key, until } = require('selenium-webdriver');
 
 let componentName;
 
-const Search = async () => {
+const Search = async (driver) => {
     componentName = 'поиска';
     startTesting(componentName);
     let elementSubmit;
@@ -29,15 +28,17 @@ const Search = async () => {
     try {
         try {
             console.log(`Проверяем результаты с заведомо некорректным запросом "${valueSearchEmpty}"`);
-            driver.wait(until.elementLocated(searchInput), maxWaitTime).sendKeys(valueSearchEmpty, Key.RETURN);
+            await driver.wait(until.elementLocated(searchInput), maxWaitTime).sendKeys(valueSearchEmpty, Key.RETURN);
             elementSubmit = await driver.wait(until.elementLocated(classSubmit), maxWaitTime);
             await click(driver, elementSubmit);
             await consoleSuccess(`По поисковому запросу "${valueSearchEmpty}" успешно не найдены результаты`);
         } catch (e) {
             if (e.name === 'TimeoutError') {
                 await consoleError(errors.notFound);
+                await console.log(e);
             } else {
                 await consoleError(errors.unlooked);
+                await console.log(e);
             }
         }
         try {
@@ -70,7 +71,6 @@ const Search = async () => {
         }
     } finally {
         finishTesting(componentName);
-        await driver.quit();
     }
 };
 

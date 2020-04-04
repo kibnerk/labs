@@ -9,6 +9,8 @@
         "selenium-webdriver": "^4.0.0-alpha.7"
     },
     "devDependencies": {
+        "cross-env": "^7.0.2",
+        "dotenv": "^8.2.0",
         "eslint": "^6.8.0",
         "eslint-config-standard": "^14.1.1",
         "eslint-plugin-import": "^2.20.2",
@@ -17,7 +19,8 @@
         "eslint-plugin-standard": "^4.0.1"
     },
     "scripts": {
-        "tests": "node index",
-        "eslint": "eslint . --ext .js,.ts,.tsx --fix"
+        "tests": "node index.js",
+        "auth": "cross-env TYPE=auth node index.js",
+        "search": "cross-env TYPE=search node index.js"
     }
 }
