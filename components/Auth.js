@@ -34,7 +34,6 @@ const Search = async (driver) => {
     await driver.get(url);
 
     try {
-        console.log('Проверяем авторизацию');
         const authItem = driver.wait(until.elementLocated(authLogin), maxWaitTime);
         await click(driver, authItem);
 
