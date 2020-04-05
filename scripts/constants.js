@@ -23,11 +23,11 @@ const consoleError = (text) => {
 };
 
 const startTesting = (component) => {
-    console.log(`🟦 Тестирование ${component} началось `.blue);
+    console.log(`~ Тестирование ${component} началось `.blue);
 };
 
 const finishTesting = (component) => {
-    console.log(`🟦 Тестирование ${component} закончилось `.blue);
+    console.log(`~ Тестирование ${component} закончилось `.blue);
 };
 
 module.exports = { url, maxWaitTime, errors, click, consoleError, consoleSuccess, startTesting, finishTesting, browserName, categoryPage };

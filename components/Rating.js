@@ -9,16 +9,17 @@ const {
     finishTesting,
     categoryPage
 } = require('../scripts/constants');
-const { By, Key, until } = require('selenium-webdriver');
+const { By, until } = require('selenium-webdriver');
 
 let componentName;
 
 const Rating = async (driver) => {
     componentName = 'рейтинга';
     startTesting(componentName);
-
-    const feedItemCounter = By.css('.feed__chunk:first-child > .feed__item:last-child  .vote .vote__value__v--real');
-    const feedItemPlus = By.css('.feed__chunk:first-child > .feed__item:last-child  .vote  .vote__button--plus');
+    const currentItem = '.feed__chunk:first-child > .feed__item:last-child';
+    const feedItemCounter = By.css(`${currentItem}  .vote .vote__value__v--real`);
+    const feedItemPlus = By.css(`${currentItem} .vote  .vote__button--plus`);
+    const feedItemLink = By.css(`${currentItem} .content-feed__link`);
 
     await driver.get(`${url}/${categoryPage}`);
 
@@ -27,20 +28,23 @@ const Rating = async (driver) => {
 
         await driver.wait(until.elementLocated(feedItemCounter), maxWaitTime).getText().then((count) => {
             co.prev = count;
-            consoleSuccess(`Голосов сейчас: ${co.prev}`);
         });
 
         const itemPlus = await driver.wait(until.elementLocated(feedItemPlus), maxWaitTime);
         await click(driver, itemPlus);
+        await driver.sleep(500);
 
         await driver.wait(until.elementLocated(feedItemCounter), maxWaitTime).getText().then((count) => {
             co.after = count;
-            consoleSuccess(`Голосов сейчас: ${co.after}!`);
+        });
+
+        const link = await driver.wait(until.elementLocated(feedItemLink), maxWaitTime).getAttribute('href').then(href => {
+            return href;
         });
 
         const counter = async () => {
-            const text = co.after > co.prev ? 'Рейтинг прибавлен' : 'Рейтинг уже был изменен';
-            await console.log(text);
+            const text = co.after > co.prev ? `Рейтинг записи ${link} изменен с ${co.prev} на ${co.after}` : co.prev - co.after === 1 ? `Рейтинг записи ${link} изменен с ${co.prev} на ${co.after}. Вы убрали оценку записи.` : `Кажется, кто-то успел поменять рейтинг записи ${link} вместе с вами, и он уменьшился с ${co.prev} на ${co.after}`;
+            await consoleSuccess(text);
         };
         await counter();
     } catch (e) {

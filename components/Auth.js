@@ -24,8 +24,7 @@ const Search = async (driver) => {
     const authLogin = By.css('.main_menu__auth__login');
     const authEmail = By.css('[data-auth-target="signin-email"]');
     const authLogged = By.css('.main_menu__auth__logged_in');
-    // const inputEmail = By.css('.auth-form__content > div.ui_form__fieldset:nth-of-type(2) > input');
-    // const inputPassword = By.css('.auth-form__content > div.ui_form__fieldset:nth-of-type(3) > input');
+
     const inputEmail = By.name('login');
     const inputPassword = By.name('password');
     const openProfile = By.css('.possession_triangle');
