@@ -5,6 +5,9 @@ const url = 'https://tjournal.ru'; // сайт для тестов
 const categoryPage = 'new';
 const maxWaitTime = 4000; // максимальное время ожидания
 
+const valueSearch = 'коронавирус';
+const valueSearchEmpty = 'qwertykoronavirus';
+
 const errors = {
     notFound: 'Ошибка: некоторые элементы не были найдены на странице',
     unlooked: 'Произошла непредвиденная ошибка'
@@ -30,4 +33,8 @@ const finishTesting = (component) => {
     console.log(`~ Тестирование ${component} закончилось `.blue);
 };
 
-module.exports = { url, maxWaitTime, errors, click, consoleError, consoleSuccess, startTesting, finishTesting, browserName, categoryPage };
+const checkSort = (arr) => {
+    return !!arr.reduce((n, item) => n !== false && item >= n && item);
+};
+
+module.exports = { url, maxWaitTime, errors, click, consoleError, consoleSuccess, startTesting, finishTesting, browserName, categoryPage, valueSearch, valueSearchEmpty, checkSort };

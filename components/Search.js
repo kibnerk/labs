@@ -6,7 +6,9 @@ const {
     consoleError,
     consoleSuccess,
     startTesting,
-    finishTesting
+    finishTesting,
+    valueSearch,
+    valueSearchEmpty
 } = require('../scripts/constants');
 const { By, Key, until } = require('selenium-webdriver');
 
@@ -16,9 +18,6 @@ const Search = async (driver) => {
     componentName = 'поиска';
     startTesting(componentName);
     let elementSubmit;
-
-    const valueSearch = 'коронавирус';
-    const valueSearchEmpty = 'qwertykoronavirus';
 
     const searchInput = By.css('.search__input');
     const classSubmit = By.css('.search-dropdown-item.search-dropdown-item--submit');

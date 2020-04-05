@@ -22,6 +22,7 @@
         "tests": "node index.js",
         "auth": "cross-env TYPE=auth node index.js",
         "search": "cross-env TYPE=search node index.js",
-        "rating": "cross-env TYPE=rating node index.js"
+        "rating": "cross-env TYPE=rating node index.js",
+        "sort": "cross-env TYPE=sort node index.js"
     }
 }
