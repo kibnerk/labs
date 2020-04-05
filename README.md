@@ -1,5 +1,9 @@
 # Lab 4 - Тестирование web-приложений с помощью Selenium
 
+## Demo
+
+![Tests](demo/demo.gif)
+
 ## Использование
 
 Установить nodejs
@@ -20,4 +24,6 @@ yarn tests
 ```
 yarn auth
 yarn search
+yarn rating
+yarn sort
 ```
