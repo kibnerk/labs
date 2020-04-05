@@ -43,7 +43,7 @@ const Rating = async (driver) => {
         });
 
         const counter = async () => {
-            const text = co.after > co.prev ? `Рейтинг записи ${link} изменен с ${co.prev} на ${co.after}` : co.prev - co.after === 1 ? `Рейтинг записи ${link} изменен с ${co.prev} на ${co.after}. Вы убрали оценку записи.` : `Кажется, кто-то успел поменять рейтинг записи ${link} вместе с вами, и он уменьшился с ${co.prev} на ${co.after}`;
+            const text = co.after > co.prev ? `Рейтинг записи ${link} изменен с ${co.prev} на ${co.after}` : co.prev - co.after === 1 ? `Рейтинг записи ${link} изменен с ${co.prev} на ${co.after}. Вы убрали оценку записи.` : `Кажется, кто-то успел поменять рейтинг записи ${link} вместе с вами, и он изменился с ${co.prev} на ${co.after}`;
             await consoleSuccess(text);
         };
         await counter();
